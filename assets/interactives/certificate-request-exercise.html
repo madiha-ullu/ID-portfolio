@@ -1,0 +1,501 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Certificate Request Exercise</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&family=Source+Serif+4:wght@600&family=Homemade+Apple&display=swap">
+<style>
+html,body{margin:0;padding:0;background:#FFFFFF}
+*{box-sizing:border-box}
+button{font-family:inherit;cursor:pointer}
+#fit{width:100%;overflow:hidden;position:relative}
+#stage{width:1280px;height:800px;position:absolute;left:0;top:0;transform-origin:0 0;overflow:hidden;font-family:'Plus Jakarta Sans',sans-serif;background:#FFFFFF;color:#22282B}
+.pill{font-size:13px;padding:6px 12px;border-radius:999px;background:#FFFFFF;color:#535D61;border:1px solid #D3DCDA}
+.pill.done{background:#E3EFEC;color:#0B4A45;border-color:#B9D6D0}
+.pill.current{background:#7B3F6E;color:#FFFFFF;border-color:#7B3F6E;font-weight:600}
+.btn-primary{background:#7B3F6E;color:#FFFFFF;border:0;border-radius:8px;padding:12px 20px;font-size:15px;font-weight:600;min-height:44px}
+.btn-primary:hover{background:#5F2F55}
+.btn-ghost{background:#FFFFFF;color:#7B3F6E;border:1.5px solid #7B3F6E;border-radius:8px;padding:10px 16px;font-size:14px;font-weight:600;min-height:44px}
+.btn-ghost:hover{background:#F5E9F1}
+.sys{width:848px;height:696px;background:#F8FAFA;border:1px solid #C9D4D2;border-radius:12px;overflow:hidden;position:relative;display:flex;font-size:13px;color:#22282B}
+.side{width:176px;flex-shrink:0;background:#F0F5F4;border-right:1px solid #D3DCDA;display:flex;flex-direction:column;padding:16px 10px;gap:4px}
+.nav{display:flex;align-items:center;gap:10px;text-align:left;background:transparent;border:0;border-radius:8px;padding:9px 10px;font-size:13.5px;color:#3A4447;min-height:40px}
+.nav:hover{background:#E3EDEB}
+.nav.on{background:#D3E8E4;color:#0B4A45;font-weight:600}
+.sub{text-align:left;background:#FFFFFF;border:1px solid #D3DCDA;border-radius:6px;padding:8px 10px;margin-left:18px;font-size:13px;color:#22282B;min-height:38px}
+.sub:hover{border-color:#0E6B63;color:#0B4A45}
+.card{background:#FFFFFF;border:1px solid #DDE5E3;border-radius:10px}
+.cap{font-size:11px;font-weight:700;letter-spacing:.8px;color:#535D61}
+.lbl{font-weight:600;font-size:12.5px;margin-bottom:4px;display:block;color:#22282B}
+.fld{width:100%;border:1px solid #BCC9C6;background:#FFFFFF;border-radius:6px;padding:7px 10px;font-size:13px;font-family:inherit;height:36px}
+.fld:focus{outline:2px solid #0E6B63;outline-offset:1px}
+.tbtn{background:#0E6B63;color:#FFFFFF;border:0;border-radius:6px;padding:8px 16px;font-size:13px;font-weight:600;min-height:36px}
+.tbtn:hover{background:#0B544E}
+.obtn{background:#FFFFFF;color:#0B4A45;border:1px solid #9FBDB7;border-radius:6px;padding:8px 14px;font-size:13px;font-weight:600;min-height:36px}
+.obtn:hover{background:#EEF6F4}
+.row{display:grid;grid-template-columns:100px minmax(0,1fr) 110px 80px;align-items:center;padding:8px 14px;border-top:1px solid #EAF0EE;font-size:13px}
+.th{font-size:11px;font-weight:700;letter-spacing:.6px;color:#535D61;padding:8px 10px;background:#F3F7F6}
+.td{padding:10px;font-size:12.5px;border-top:1px solid #EAF0EE;vertical-align:top}
+.scrim{position:absolute;left:0;top:0;right:0;bottom:0;background:rgba(18,32,30,.45);display:flex;align-items:center;justify-content:center}
+.chip{font-size:12px;padding:4px 10px;border-radius:999px;border:1px solid #BCC9C6;background:#FFFFFF}
+.opt{display:flex;gap:10px;align-items:center;padding:10px 12px;border:1px solid #D3DCDA;border-radius:8px;background:#FFFFFF;font-size:15px;cursor:pointer}
+.opt:hover{border-color:#7B3F6E}
+.qfb{font-size:14px;padding:8px 10px;border-radius:6px}
+.qfb.ok{background:#E3EFEC;color:#0B4A45}
+.qfb.no{background:#F7E6EF;color:#6A2A58}
+.sr{position:absolute;left:-9999px}
+/* certificate */
+.cert{width:600px;height:780px;position:relative;padding:26px 30px;background:#FFFFFF;font-family:'Source Sans 3',sans-serif;color:#22282B;font-size:10.5px;line-height:1.4;display:flex;flex-direction:column;gap:9px}
+.cert .k{font-size:9px;font-weight:700;letter-spacing:1px;color:#0E6B63}
+.cert .lc{background:#E6EFED;padding:4px 6px;font-weight:600}
+.cert .vc{padding:4px 6px}
+.cert .bt{border-top:1px solid #C7D3D1}
+.cert .hc{background:#0E6B63;color:#FFFFFF;padding:4px 6px;font-weight:600}
+.cert .box{border:1px solid #C7D3D1;border-radius:3px;padding:6px 8px}
+.blur{filter:blur(3.5px);user-select:none}
+.fade{position:absolute;left:0;top:0;right:0;bottom:0;background:rgba(238,228,200,.55);pointer-events:none}
+</style>
+</head>
+<body>
+<div id="fit"><div id="stage"></div></div>
+<script>
+(function () {
+  var CLIENTS = [
+    ['000001','1A Company','Ontario'],['000002','7 Corporation','Quebec'],['000003','98 Products','Ontario'],
+    ['000004','AAAA Supplies','Manitoba'],['000005','ABCD Business','Alberta'],['000006','ACME Co','Ontario'],
+    ['000010','Adding Tools','Nova Scotia'],['000745','BAA Buildings','British Columbia'],['002683','BBB Books','Ontario'],
+    ['1122667','Big Business ABC','Alberta'],['1122670','Big Business Holdings','Ontario'],['2556256','BK Hotels','Quebec'],
+    ['2586333','Bright Banks','Ontario'],['2601140','Brookside Farms','Saskatchewan'],['2610022','Cedar Logistics','British Columbia']
+  ].map(function (c) { return { id: c[0], name: c[1], region: c[2] }; });
+
+  var QUIZ = [
+    { key: 'q1', text: '1. When was the certificate effective?', correct: 'b', opts: [
+      { v: 'a', label: '15 May 2025', why: 'That is the policy effective date. John asked about the certificate. Look at Certificate Term.' },
+      { v: 'b', label: '02 June 2025', why: 'Correct. The certificate term starts 02 June 2025. That is also its issue date.' },
+      { v: 'c', label: '15 May 2026', why: 'That is when the certificate expires, not when it took effect.' },
+      { v: 'd', label: '22 July 2025', why: 'That is the date of John’s email. Check Certificate Term.' } ] },
+    { key: 'q2', text: '2. What is the limit of liability?', correct: 'a', opts: [
+      { v: 'a', label: 'CAD 21,500,000', why: 'Correct. The limit of liability is CAD 21,500,000.' },
+      { v: 'b', label: 'CAD 2,150,000', why: 'Count the digits again. The figure is ten times larger.' },
+      { v: 'c', label: 'USD 21,500,000', why: 'Check the currency. This policy is written in Canadian dollars.' },
+      { v: 'd', label: 'CAD 21,000,000', why: 'Look again at the limit of liability figure.' } ] }
+  ];
+
+  function fresh() {
+    return { step: 'intro', menu: false, fb: null, query: '', searchBy: 'name', results: null, docNum: '', checked: false, printOpen: false, copy: null, sawAttachment: false, answers: {}, submitted: false };
+  }
+  var s = fresh();
+  function set(o) { for (var k in o) s[k] = o[k]; render(); }
+  function fb(t, m) { set({ fb: { title: t, msg: m }, menu: false }); }
+  function esc(x) { return String(x).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
+
+  /* ---------- certificate ---------- */
+  function cert(faded) {
+    var b = faded ? ' class="blur"' : '';
+    return '<div class="cert">' +
+      '<div style="display:flex;justify-content:space-between;align-items:flex-start;gap:16px">' +
+        '<div style="display:flex;gap:10px;align-items:flex-start">' +
+          '<div style="width:34px;height:34px;border-radius:50%;background:#0E6B63;color:#fff;font-family:\'Source Serif 4\',serif;font-weight:600;font-size:17px;display:flex;align-items:center;justify-content:center">H</div>' +
+          '<div style="font-size:9px;line-height:1.35;color:#4A5357"><div style="font-weight:700;font-size:11px;color:#0E6B63">Harborline Mutual Insurance Company</div><div>100 Harbour Place, Suite 200 · Toronto, Ontario A1A 1A1 · Canada</div><div>Tel (1) 905 763-5555 · Fax (1) 905 763-5556</div></div>' +
+        '</div>' +
+        '<div style="border:1.5px solid #0E6B63;border-radius:4px;padding:5px 10px;text-align:right"><div style="font-size:8px;font-weight:700;letter-spacing:1px;color:#0E6B63">CERTIFICATE NO.</div><div style="font-size:14px;font-weight:700">00081-002</div></div>' +
+      '</div>' +
+      '<div style="border-bottom:2px solid #0E6B63;padding-bottom:4px;font-family:\'Source Serif 4\',serif;font-weight:600;font-size:20px;color:#1D2427">Certificate of Insurance</div>' +
+      '<div style="font-style:italic;color:#4A5357;background:#F2F6F5;padding:6px 8px;border-radius:3px">This document is issued as a matter of information only and confers no rights upon the document holder. It does not amend, extend or alter the coverage, terms, exclusions, conditions or other provisions of the policy. We certify that insurance coverage is now in force with our Company as outlined below.</div>' +
+      '<div style="display:grid;grid-template-columns:110px minmax(0,1fr) 110px minmax(0,1fr);border:1px solid #C7D3D1">' +
+        '<div class="lc">Policy number</div><div class="vc">1122667</div><div class="lc">Policy effective</div><div class="vc"><span' + b + '>15 May 2025</span></div>' +
+        '<div class="lc bt">Account number</div><div class="vc bt">1-22334</div><div class="lc bt">Policy expires</div><div class="vc bt"><span' + b + '>15 May 2026</span></div>' +
+      '</div>' +
+      '<div><div class="k">NAMED INSURED</div><div>Big Business ABC and all subsidiaries as now exist or may later be constituted, including 12345 Corporation Inc., 200 Unreal Street East, Toronto, ON M4W 1E5</div></div>' +
+      '<div style="display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);gap:12px">' +
+        '<div><div class="k">PROPERTY COVERED</div><div>Personal Property at Big Business ABC Estate, 345 Avenue South, Calgary, Alberta T2E 0L0, Canada</div></div>' +
+        '<div style="display:grid;grid-template-columns:70px minmax(0,1fr);row-gap:1px"><div style="font-weight:600">Location no.</div><div>Z011</div><div style="font-weight:600">Index no.</div><div>100200.03</div><div style="font-weight:600">Division</div><div>Big Business ABC Estate</div></div>' +
+      '</div>' +
+      '<div><div class="k" style="margin-bottom:3px">COVERAGE IN FORCE <span style="font-weight:400;letter-spacing:0;color:#4A5357">(subject to limits of liability, deductibles and conditions in the Policy)</span></div>' +
+        '<div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border:1px solid #C7D3D1"><div class="hc">Insurance provided</div><div class="hc">Peril</div><div class="hc">Limit of liability</div><div class="vc">Property Damage</div><div class="vc">All Risk</div><div class="vc"><span' + b + '>CAD 21,500,000</span></div></div>' +
+      '</div>' +
+      '<div><div class="k">ADDITIONAL INTERESTS</div><div>Additional interests detailed below are covered in accordance with Certificates of Insurance issued to such interests and on file with this Company. Loss, if any, is payable to such interests as their interests may appear, and in accordance with the loss payment provisions of the Policy.</div></div>' +
+      '<div style="display:grid;grid-template-columns:150px minmax(0,1fr);gap:10px">' +
+        '<div class="box"><div class="k">CERTIFICATE TERM</div><div' + b + '>Effective 02 June 2025<br>Expires 15 May 2026</div></div>' +
+        '<div class="box"><div class="k">INTEREST TYPE</div><div' + b + '><div>Mortgagee in accordance with the Additional Interests clause above and the mortgagee provisions of the Policy.</div><div style="margin-top:3px">Businesses Trust Company c/o LOTTA Capital (Canada) Inc. and Successors &amp; Assigns, 145 Jester Street, Suite 1100, Toronto, Ontario M5H 1J4, Canada</div><div style="margin-top:3px;font-weight:600">Mortgagee and Loss Payee</div></div></div>' +
+      '</div>' +
+      '<div style="flex-grow:1"></div>' +
+      '<div style="display:flex;justify-content:space-between;align-items:flex-end"><div style="font-size:8.5px;color:#6A7377">Form HM-COI-3 · Page 1 of 1</div>' +
+        '<div style="width:210px;display:flex;flex-direction:column;gap:2px"><div style="font-family:\'Homemade Apple\',cursive;font-size:17px;line-height:1.5;color:#1F3A5F;padding-left:6px">Theo Marchetti</div><div style="border-top:1px solid #22282B;padding-top:3px;font-size:9px;color:#4A5357">Authorized representative<br>Theo Marchetti · Issued 02 June 2025</div></div>' +
+      '</div>' +
+      (faded ? '<div class="fade"></div>' : '') +
+    '</div>';
+  }
+
+  /* ---------- pieces ---------- */
+  var ORDER = { intro: -1, email: 0, home: 1, search: 1, account: 2, results: 3, cert: 3, quiz: 4, done: 5 };
+  var LABELS = ['Read the request', 'Find the client', 'Find the certificate', 'Pull a clear copy', 'Answer the client'];
+
+  function topbar() {
+    var h = '<div style="height:56px;padding:0 24px;display:flex;align-items:center;justify-content:space-between;background:#fff;border-bottom:1px solid #D3DCDA">' +
+      '<div style="display:flex;align-items:baseline;gap:12px"><div style="font-weight:700;font-size:16px">Certificate Request</div><div style="font-size:13px;color:#535D61">Practice exercise</div></div>';
+    if (s.step !== 'intro') {
+      var i = ORDER[s.step];
+      h += '<div style="display:flex;gap:6px">' + LABELS.map(function (l, n) {
+        return '<div class="pill' + (n < i ? ' done' : n === i ? ' current' : '') + '">' + l + '</div>';
+      }).join('') + '</div>';
+    }
+    return h + '</div>';
+  }
+
+  function intro() {
+    return '<div style="height:744px;display:flex;align-items:center;justify-content:center"><div style="width:640px;background:#fff;border-radius:14px;border:1px solid #D3DCDA;padding:48px;display:flex;flex-direction:column;gap:20px">' +
+      '<div style="font-size:13px;font-weight:700;letter-spacing:1px;color:#7B3F6E">DOCUMENT SPECIALIST TRAINING</div>' +
+      '<h1 style="margin:0;font-size:34px;line-height:1.15">A client can’t read his certificate</h1>' +
+      '<p style="margin:0;font-size:16px;line-height:1.55;color:#3A4447">A new client emails because his certificate is old and faded. Your job is to find his account, pull a clear copy and answer his questions.</p>' +
+      '<div style="display:flex;flex-direction:column;gap:8px;font-size:15px;color:#3A4447"><div>1. Read the client’s request</div><div>2. Find the client in the Insurance Document System</div><div>3. Search for the certificate and pull a clear copy</div><div>4. Answer the client’s two questions</div></div>' +
+      '<div style="display:flex;align-items:center;justify-content:space-between"><div style="font-size:14px;color:#535D61">About 5 minutes</div><button class="btn-primary" data-act="start">Start exercise</button></div>' +
+    '</div></div>';
+  }
+
+  function done() {
+    return '<div style="height:744px;display:flex;align-items:center;justify-content:center"><div style="width:640px;background:#fff;border-radius:14px;border:1px solid #D3DCDA;padding:48px;display:flex;flex-direction:column;gap:18px">' +
+      '<div style="font-size:13px;font-weight:700;letter-spacing:1px;color:#0E6B63">EXERCISE COMPLETE</div>' +
+      '<h2 style="margin:0;font-size:30px;line-height:1.2">Nice work. John has his answers.</h2>' +
+      '<p style="margin:0;font-size:16px;line-height:1.55;color:#3A4447">In a real request, you would now send John the clear certificate and answer his questions in your reply.</p>' +
+      '<div style="display:flex;flex-direction:column;gap:8px;font-size:15px;color:#3A4447"><div>You found a client account by company name.</div><div>You used the certificate number to find the exact document.</div><div>You pulled a clear copy with Download / Print.</div><div>You read the certificate term and the limit of liability.</div></div>' +
+      '<p style="margin:0;font-size:14px;color:#535D61">This was a short preview of the Insurance Document System. You’ll learn more in future lessons.</p>' +
+      '<div><button class="btn-ghost" data-act="restart">Start over</button></div>' +
+    '</div></div>';
+  }
+
+  function email() {
+    return '<div style="width:848px;height:696px;background:#fff;border:1px solid #C5CCD6;border-radius:12px;overflow:hidden;display:flex;flex-direction:column">' +
+      '<div style="background:#2B2F36;color:#fff;padding:16px 20px;display:flex;flex-direction:column;gap:12px">' +
+        '<div style="font-size:20px">Request for help with a certificate</div>' +
+        '<div style="display:flex;align-items:center;gap:12px"><div style="width:44px;height:44px;border-radius:50%;background:#B0413E;display:flex;align-items:center;justify-content:center;font-weight:600">JB</div>' +
+          '<div style="flex-grow:1"><div style="font-size:15px">john.brown@bigbusinessabc.com</div><div style="font-size:13px;color:#C9CED6">To: documents@harborline.example</div></div><div style="font-size:13px;color:#C9CED6">Tue 7/22/2025 11:58 AM</div></div>' +
+        '<button data-act="openAttachment" aria-label="Open attachment Big Business Certificate.pdf" style="align-self:flex-start;display:flex;align-items:center;gap:10px;background:#3A3F48;color:#fff;border:1px solid #5A606B;border-radius:4px;padding:8px 14px;min-height:44px">' +
+          '<svg width="22" height="26" viewBox="0 0 22 26" fill="none" stroke="#F08A7E" stroke-width="1.6"><path d="M3 1h11l5 5v19H3z"/><path d="M14 1v5h5"/><path d="M7 14h8M7 18h8"/></svg>' +
+          '<span style="display:flex;flex-direction:column;align-items:flex-start"><span style="font-size:14px">Big Business Certificate.pdf</span><span style="font-size:12px;color:#C9CED6">214 KB · click to open</span></span></button>' +
+      '</div>' +
+      '<div style="padding:24px 28px;font-size:16px;line-height:1.6;display:flex;flex-direction:column;gap:16px">' +
+        '<div>Hello Documents team,</div>' +
+        '<div>I am the new owner of Big Business ABC. I recently inherited the company from my grandmother and am still figuring things out. I’ve found the certificate attached but it is old and faded so I cannot make out the details. Could you please help me find the missing information? Specifically, when was the certificate effective and what is the limit of liability?</div>' +
+        '<div>I appreciate your help.</div><div>Thanks,<br>John Brown</div>' +
+      '</div></div>';
+  }
+
+  var ICONS = {
+    dash: '<svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="2" y="2" width="5" height="5" rx="1"/><rect x="9" y="2" width="5" height="5" rx="1"/><rect x="2" y="9" width="5" height="5" rx="1"/><rect x="9" y="9" width="5" height="5" rx="1"/></svg>',
+    clients: '<svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="6" cy="5.5" r="2.5"/><path d="M1.5 14c0-2.5 2-4 4.5-4s4.5 1.5 4.5 4"/><path d="M11 3.5a2.2 2.2 0 010 4.2M12.5 10.2c1.3.5 2 1.8 2 3.8"/></svg>',
+    docs: '<svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><path d="M3.5 1.5h6L12.5 4.5v10h-9z"/><path d="M9.5 1.5v3h3"/></svg>',
+    'new': '<svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="8" cy="8" r="6"/><path d="M8 5v6M5 8h6"/></svg>',
+    notes: '<svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><path d="M2.5 2.5h11v8h-6l-3 3v-3h-2z"/></svg>'
+  };
+
+  function sidebar() {
+    var clientSide = ['search', 'account', 'results', 'cert'].indexOf(s.step) >= 0;
+    function nav(key, label) {
+      var on = (key === 'dash' && s.step === 'home') || (key === 'clients' && clientSide);
+      return '<button class="nav' + (on ? ' on' : '') + '" data-act="nav" data-arg="' + key + '">' + ICONS[key] + label + '</button>';
+    }
+    return '<div class="side">' +
+      '<div style="display:flex;align-items:center;gap:8px;padding:2px 6px 14px"><div style="width:28px;height:28px;border-radius:8px;background:#0E6B63;display:flex;align-items:center;justify-content:center"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 1.5h5.5L12 4v10.5H4z"/><path d="M6.5 8.5l1.5 1.5 3-3"/></svg></div>' +
+      '<div style="line-height:1.2"><div style="font-weight:700;font-size:13px;color:#0B4A45">Insurance</div><div style="font-size:11px;color:#535D61">Document System</div></div></div>' +
+      nav('dash', 'Dashboard') + nav('clients', 'Clients') +
+      (s.step === 'home' && s.menu ? '<div style="display:flex;flex-direction:column;gap:4px;padding:2px 0 6px"><button class="sub" data-act="findClient">Find a client</button><button class="sub" data-act="recentClients">Recently viewed</button></div>' : '') +
+      nav('docs', 'Documents') + nav('new', 'New document') + nav('notes', 'Account notes') +
+      '<div style="flex-grow:1"></div><div style="display:flex;align-items:center;gap:8px;padding:8px 6px;border-top:1px solid #D3DCDA"><div style="width:28px;height:28px;border-radius:50%;background:#CFE3DF;color:#0B4A45;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center">JD</div><div style="font-size:12px;color:#3A4447">Jane Doe</div></div>' +
+    '</div>';
+  }
+
+  function homePage() {
+    var act = [['Certificate 00412-001 issued · BK Hotels', 'Yesterday'], ['Renewal decision recorded · ACME Co', 'Yesterday'], ['Third party added · Bright Banks', '2 days ago'], ['Certificate 00377-004 revised · BBB Books', '3 days ago']];
+    return '<div style="padding:20px;display:flex;flex-direction:column;gap:16px"><div style="font-size:15px;color:#3A4447">Good morning, Jane. Here’s your queue.</div>' +
+      '<div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px">' +
+      [['OPEN REQUESTS', 7], ['AWAITING SIGNATURE', 3], ['RENEWALS THIS MONTH', 12]].map(function (c) { return '<div class="card" style="padding:14px"><div class="cap">' + c[0] + '</div><div style="font-size:26px;font-weight:700;color:#0B4A45">' + c[1] + '</div></div>'; }).join('') + '</div>' +
+      '<div class="card" style="display:flex;flex-direction:column"><div style="padding:12px 14px;font-weight:700">Recent activity</div>' +
+      act.map(function (a) { return '<div class="row" style="grid-template-columns:minmax(0,1fr) 120px"><div>' + a[0] + '</div><div style="color:#535D61">' + a[1] + '</div></div>'; }).join('') + '</div></div>';
+  }
+
+  function searchPage() {
+    var shown = s.results ? CLIENTS.filter(function (c) { return s.results.indexOf(c.id) >= 0; }) : CLIENTS;
+    return '<div style="padding:20px;display:flex;flex-direction:column;gap:12px">' +
+      '<div class="card" style="padding:14px;display:flex;gap:10px;align-items:flex-end">' +
+        '<div style="width:150px"><label class="lbl" for="searchby">Search by</label><select id="searchby" class="fld"><option value="name"' + (s.searchBy === 'name' ? ' selected' : '') + '>Client name</option><option value="number"' + (s.searchBy === 'number' ? ' selected' : '') + '>Account number</option></select></div>' +
+        '<div style="flex-grow:1"><label class="lbl" for="q">Search term</label><input id="q" class="fld" placeholder="' + (s.searchBy === 'name' ? 'Company name' : 'Account number') + '" value="' + esc(s.query) + '"></div>' +
+        '<button class="tbtn" data-act="runSearch">Search</button><button class="obtn" data-act="showAll">Clear</button>' +
+      '</div>' +
+      '<div class="card" style="display:flex;flex-direction:column;overflow:hidden">' +
+        '<div class="row" style="background:#F3F7F6;border-top:0;font-size:11px;font-weight:700;letter-spacing:.6px;color:#535D61"><div>ACCOUNT #</div><div>CLIENT NAME</div><div>REGION</div><div></div></div>' +
+        '<div style="height:390px;overflow-y:auto">' +
+        (shown.length ? shown.map(function (c) {
+          return '<div class="row"><div style="color:#535D61">' + c.id + '</div><div style="font-weight:600">' + c.name + '</div><div style="color:#535D61">' + c.region + '</div><div><button class="obtn" style="min-height:30px;padding:4px 12px" data-act="pickClient" data-arg="' + c.id + '">Open</button></div></div>';
+        }).join('') : '<div style="padding:16px;font-size:13px;color:#535D61">No clients match that search. Check the spelling and try again.</div>') +
+        '</div><div style="padding:8px 14px;font-size:12px;color:#535D61;border-top:1px solid #EAF0EE">' + shown.length + (shown.length === 1 ? ' client' : ' clients') + '</div>' +
+      '</div></div>';
+  }
+
+  function clientHeader() {
+    return '<div style="padding:16px 20px 0"><div class="card" style="padding:12px 16px;display:flex;align-items:center;gap:14px">' +
+      '<div style="width:40px;height:40px;border-radius:10px;background:#E3EFEC;color:#0B4A45;font-weight:700;display:flex;align-items:center;justify-content:center">BB</div>' +
+      '<div style="flex-grow:1"><div style="font-size:16px;font-weight:700">Big Business ABC</div><div style="font-size:12px;color:#535D61">Account 1-22334 · Master policy 1122667 · 15 May 2025 – 15 May 2026</div></div>' +
+      '<div style="display:flex;gap:4px;font-size:13px"><div style="padding:6px 12px;color:#535D61">Overview</div><div style="padding:6px 12px;color:#535D61">Policies</div><div style="padding:6px 12px;border-radius:6px;background:#D3E8E4;color:#0B4A45;font-weight:600">Documents</div></div>' +
+    '</div></div>';
+  }
+
+  function accountPage() {
+    return '<div style="padding:14px 20px;display:flex;gap:14px">' +
+      '<div class="card" style="flex-grow:1;padding:16px;display:flex;flex-direction:column;gap:12px"><div style="font-weight:700;font-size:15px">Find a document</div>' +
+        '<div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px">' +
+          '<div style="grid-column:span 2;padding:10px;border-radius:8px;background:#F5E9F1;border:1px dashed #7B3F6E"><label class="lbl" for="docnum">Certificate number</label><input id="docnum" class="fld" placeholder="e.g. 00000-000" value="' + esc(s.docNum) + '"></div>' +
+          '<div><label class="lbl" for="doctype">Document type</label><select id="doctype" class="fld"><option>Any type</option><option>Certificate of insurance</option><option>Policy information form</option></select></div>' +
+          '<div><label class="lbl" for="locno">Location number</label><input id="locno" class="fld"></div>' +
+          '<div><label class="lbl" for="tpname">Third-party name</label><input id="tpname" class="fld"></div>' +
+          '<div><label class="lbl" for="addr">Street address</label><input id="addr" class="fld"></div>' +
+        '</div>' +
+        '<div><div class="lbl">Status</div><div style="display:flex;gap:6px;flex-wrap:wrap"><span class="chip">In process</span><span class="chip">Issued</span><span class="chip">Revised</span><span class="chip">Expired</span><span class="chip">Canceled</span></div></div>' +
+        '<div style="display:flex;justify-content:flex-end;gap:8px"><button class="obtn" data-act="resetDoc">Clear</button><button class="tbtn" data-act="docSearch">Search</button></div>' +
+      '</div>' +
+      '<div class="card" style="width:200px;padding:14px;display:flex;flex-direction:column;gap:10px;align-self:flex-start"><div class="cap">POLICIES</div>' +
+        '<div style="font-size:12.5px"><div style="font-weight:700;color:#0B4A45">2025 Master</div><div style="color:#535D61">1122667 · Booked</div></div>' +
+        '<div style="font-size:12.5px"><div style="font-weight:600">Canada 2025–2026</div><div style="color:#535D61">1122679</div></div>' +
+        '<div style="font-size:12.5px"><div style="font-weight:600">Europe 2025–2026</div><div style="color:#535D61">1122684</div></div>' +
+        '<div style="font-size:12.5px"><div style="font-weight:600">Australia 2025–2026</div><div style="color:#535D61">1122678</div></div>' +
+      '</div></div>';
+  }
+
+  function resultsPage() {
+    return '<div style="padding:14px 20px;flex-grow:1"><div class="card" style="overflow:hidden">' +
+      '<div style="padding:10px 14px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #EAF0EE"><div style="font-weight:700">Search results <span style="font-weight:400;color:#535D61">· 1 document</span></div>' +
+        '<div style="display:flex;gap:6px"><button class="obtn" data-act="otherAction">Email</button><button class="obtn" data-act="otherAction">Update status</button><button class="tbtn" data-act="downloadPrint">Download / Print</button></div></div>' +
+      '<div style="display:grid;grid-template-columns:44px 86px minmax(0,1.3fr) minmax(0,1.2fr) 90px 70px">' +
+        '<div class="th"></div><div class="th">NUMBER</div><div class="th">BUSINESS INTEREST</div><div class="th">THIRD PARTY</div><div class="th">EFFECTIVE</div><div class="th">STATUS</div>' +
+        '<div class="td"><input type="checkbox" id="pick" aria-label="Select certificate 00081-002"' + (s.checked ? ' checked' : '') + ' style="width:18px;height:18px;accent-color:#0E6B63"></div>' +
+        '<div class="td" style="font-weight:700;color:#0B4A45">00081-002<div style="font-weight:400;color:#535D61">Certificate</div></div>' +
+        '<div class="td">Big Business ABC Estate<br>345 Avenue South, Calgary, AB<br>Loc Z011 · Index 100200.03</div>' +
+        '<div class="td">Businesses Trust Co<br>145 Jester Street, Suite 1100<br>Toronto, ON</div>' +
+        '<div class="td">02 Jun 2025</div>' +
+        '<div class="td"><span style="font-size:11.5px;font-weight:600;padding:3px 8px;border-radius:999px;background:#E3EFEC;color:#0B4A45">Issued</span></div>' +
+      '</div></div></div>';
+  }
+
+  function printDialog() {
+    return '<div class="scrim"><div class="card" style="width:520px;padding:20px;display:flex;flex-direction:column;gap:14px;box-shadow:0 12px 32px rgba(18,32,30,.3)">' +
+      '<div style="font-size:17px;font-weight:700">Download or print</div>' +
+      '<div style="border:1px solid #DDE5E3;border-radius:8px;padding:12px;display:flex;align-items:center;gap:12px"><svg width="22" height="26" viewBox="0 0 22 26" fill="none" stroke="#0E6B63" stroke-width="1.6"><path d="M3 1h11l5 5v19H3z"/><path d="M14 1v5h5"/></svg>' +
+        '<div style="flex-grow:1"><div style="font-weight:600">00081-002 · Certificate of insurance</div><div style="font-size:12px;color:#535D61">Original document · Issued · Mail to Businesses Trust Co</div></div></div>' +
+      '<div style="display:flex;justify-content:flex-end;gap:8px"><button class="obtn" data-act="cancelPrint">Cancel</button><button class="tbtn" data-act="printDocs">Open document</button></div>' +
+    '</div></div>';
+  }
+
+  function viewer() {
+    return '<div class="scrim" style="align-items:flex-start;padding-top:12px"><div class="card" style="overflow:hidden;box-shadow:0 12px 32px rgba(18,32,30,.3)">' +
+      '<div style="padding:8px 12px;display:flex;justify-content:space-between;font-size:12px;font-weight:600;border-bottom:1px solid #DDE5E3"><span>00081-002.pdf</span><span style="color:#535D61;font-weight:400">Page 1 of 1</span></div>' +
+      '<div style="height:590px;overflow-y:auto;background:#5E6769;padding:12px"><div style="zoom:.76">' + cert(false) + '</div></div>' +
+    '</div></div>';
+  }
+
+  function system() {
+    var st = s.step;
+    var titles = { home: ['Home', 'Dashboard'], search: ['Clients', 'Find a client'] };
+    var t = titles[st] || ['Clients / Big Business ABC', 'Documents'];
+    var body = '';
+    if (st === 'home') body = homePage();
+    if (st === 'search') body = searchPage();
+    if (st === 'account' || st === 'results' || st === 'cert') body = clientHeader();
+    if (st === 'account') body += accountPage();
+    if (st === 'results' || st === 'cert') body += resultsPage();
+    if (st === 'results' && s.printOpen) body += printDialog();
+    if (st === 'cert') body += viewer();
+    return '<div class="sys">' + sidebar() +
+      '<div style="flex-grow:1;display:flex;flex-direction:column;position:relative;min-width:0">' +
+        '<div style="height:56px;padding:0 20px;display:flex;align-items:center;justify-content:space-between;background:#fff;border-bottom:1px solid #DDE5E3"><div><div style="font-size:11px;color:#535D61">' + t[0] + '</div><div style="font-size:17px;font-weight:700">' + t[1] + '</div></div>' +
+        '<div style="width:220px;height:34px;border:1px solid #D3DCDA;border-radius:999px;padding:0 14px;display:flex;align-items:center;font-size:12px;color:#6A7377;background:#F8FAFA">Search everything…</div></div>' +
+        body +
+      '</div></div>';
+  }
+
+  function quiz() {
+    var qs = QUIZ.map(function (q) {
+      var chosen = s.answers[q.key];
+      var picked = q.opts.filter(function (o) { return o.v === chosen; })[0];
+      var ok = chosen === q.correct;
+      return '<fieldset style="border:0;margin:0;padding:0;display:flex;flex-direction:column;gap:8px"><legend style="font-weight:600;font-size:16px;margin-bottom:8px;padding:0">' + q.text + '</legend>' +
+        '<div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px">' +
+        q.opts.map(function (o) {
+          return '<label class="opt"><input type="radio" name="' + q.key + '" value="' + o.v + '"' + (chosen === o.v ? ' checked' : '') + ' style="accent-color:#7B3F6E">' + o.label + '</label>';
+        }).join('') + '</div>' +
+        (s.submitted && picked ? '<div class="qfb ' + (ok ? 'ok' : 'no') + '">' + picked.why + '</div>' : '') +
+      '</fieldset>';
+    }).join('');
+    var allCorrect = s.submitted && QUIZ.every(function (q) { return s.answers[q.key] === q.correct; });
+    return '<div style="width:848px;height:696px;background:#fff;border:1px solid #C9D4D2;border-radius:12px;overflow:hidden;display:flex">' +
+      '<div style="width:330px;background:#5E6769;overflow-y:auto;padding:12px"><div style="zoom:.51">' + cert(false) + '</div><button class="btn-ghost" style="margin-top:12px;width:100%" data-act="viewClear">View certificate larger</button></div>' +
+      '<div style="flex-grow:1;padding:24px 28px;overflow-y:auto;display:flex;flex-direction:column;gap:22px"><div style="font-size:20px;font-weight:700">John’s questions</div>' + qs +
+        '<div style="display:flex;gap:12px;align-items:center"><button class="btn-primary" data-act="checkAnswers">Check answers</button>' + (allCorrect ? '<button class="btn-ghost" data-act="finish">Finish</button>' : '') + '</div>' +
+      '</div></div>';
+  }
+
+  var COACH = {
+    email: ['STEP 1 OF 5', 'A client needs a clear copy', 'John Brown can’t read his certificate.\n\nRead his email. Open the attachment to see what he has. Then open the Insurance Document System to find a clear copy.'],
+    home: ['STEP 2 OF 5', 'Find the account', 'Start by looking up Big Business ABC.\n\nWhich part of the navigation would you use to find a client? Click it to see your options.'],
+    search: ['STEP 2 OF 5', 'Search for the company', 'Type the company name from the email and click Search. You can also scroll the list.\n\nThen click Open next to the right account.'],
+    account: ['STEP 3 OF 5', 'Find the certificate', 'You can search by several details.\n\nLook at John’s faded copy. Which detail can you still read that points to this exact document? Enter it in Certificate number and click Search.'],
+    results: ['STEP 4 OF 5', 'You found it', 'Select the certificate with its checkbox. Then click Download / Print.'],
+    printing: ['STEP 4 OF 5', 'Open the document', 'Click Open document to view the clear certificate.'],
+    cert: ['STEP 4 OF 5', 'Here’s the clear copy', 'Every detail is readable now.\n\nNext, use this certificate to answer John’s two questions.'],
+    quiz: ['STEP 5 OF 5', 'Answer John’s questions', 'Use the clear certificate on the left. Pick an answer for each question. Then click Check answers.']
+  };
+
+  function rail() {
+    var c = COACH[s.step === 'results' && s.printOpen ? 'printing' : s.step];
+    var h = '<div style="width:360px;height:696px;display:flex;flex-direction:column;gap:16px">' +
+      '<div style="background:#fff;border-radius:14px;border:1px solid #D3DCDA;padding:20px;display:flex;flex-direction:column;gap:12px">' +
+        '<div style="display:flex;align-items:center;gap:8px"><div style="width:26px;height:26px;border-radius:50%;background:#F5E9F1;display:flex;align-items:center;justify-content:center"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="#7B3F6E" stroke-width="1.8" stroke-linecap="round"><path d="M7 3v5M7 10.5v.5"/></svg></div><div style="font-size:12px;font-weight:700;letter-spacing:1px;color:#7B3F6E">' + c[0] + '</div></div>' +
+        '<div style="font-size:20px;font-weight:700;line-height:1.25">' + c[1] + '</div>' +
+        '<div style="font-size:15px;line-height:1.55;color:#3A4447;white-space:pre-line">' + c[2] + '</div>' +
+        (s.step === 'email' ? '<button class="btn-primary" data-act="openSystem">Open Insurance Document System</button>' : '') +
+        (s.step === 'cert' ? '<button class="btn-primary" data-act="toQuiz">Answer John’s questions</button>' : '') +
+      '</div>';
+    if (s.step === 'account') {
+      h += '<div style="background:#fff;border-radius:14px;border:1px solid #D3DCDA;padding:16px;display:flex;flex-direction:column;gap:10px"><div style="font-size:13px;font-weight:600;color:#3A4447">John’s faded copy</div>' +
+        '<div style="height:200px;overflow:hidden;border:1px solid #D3DCDA;border-radius:6px"><div style="zoom:.54">' + cert(true) + '</div></div>' +
+        '<button class="btn-ghost" data-act="viewFaded">View faded copy larger</button></div>';
+    }
+    return h + '</div>';
+  }
+
+  function overlays() {
+    var h = '';
+    if (s.copy) {
+      var f = s.copy === 'faded';
+      h += '<div style="position:absolute;inset:0;background:rgba(18,32,30,.6);display:flex;align-items:center;justify-content:center;gap:20px;z-index:20">' +
+        '<div style="height:760px;overflow-y:auto;box-shadow:0 10px 30px rgba(0,0,0,.4)"><div style="zoom:.97">' + cert(f) + '</div></div>' +
+        '<div style="width:220px;display:flex;flex-direction:column;gap:12px;color:#fff"><div style="font-size:16px;font-weight:600">' + (f ? 'Big Business Certificate.pdf' : 'Certificate 00081-002') + '</div>' +
+        '<div style="font-size:14px;line-height:1.5;color:#E4ECEA">' + (f ? 'This is the copy John sent. Some details are too faded to read. Which details can you still make out?' : 'The clear copy from the Insurance Document System.') + '</div>' +
+        '<button class="btn-primary" data-act="closeCopy">Close</button></div></div>';
+    }
+    if (s.fb) {
+      h += '<div style="position:absolute;inset:0;background:rgba(18,32,30,.55);display:flex;align-items:center;justify-content:center;z-index:30">' +
+        '<div role="alertdialog" aria-label="Feedback" style="width:460px;background:#fff;border-radius:14px;padding:32px;display:flex;flex-direction:column;align-items:center;gap:14px;text-align:center">' +
+        '<div style="width:56px;height:56px;border-radius:50%;background:#F5E9F1;display:flex;align-items:center;justify-content:center"><svg width="26" height="26" viewBox="0 0 26 26" fill="none" stroke="#7B3F6E" stroke-width="3" stroke-linecap="round"><path d="M13 6v9M13 19.5v.5"/></svg></div>' +
+        '<div style="font-size:22px;font-weight:700">' + esc(s.fb.title) + '</div><div style="font-size:16px;line-height:1.5;color:#3A4447">' + esc(s.fb.msg) + '</div>' +
+        '<button class="btn-ghost" data-act="closeFb" id="fbclose">Try again</button></div></div>';
+    }
+    return h;
+  }
+
+  function render() {
+    var st = s.step, main = '';
+    if (st === 'intro') main = intro();
+    else if (st === 'done') main = done();
+    else {
+      var left = st === 'email' ? email() : st === 'quiz' ? quiz() : system();
+      main = '<div style="height:744px;padding:24px;display:flex;gap:24px"><div style="width:848px;height:696px;position:relative">' + left + '</div>' + rail() + '</div>';
+    }
+    document.getElementById('stage').innerHTML = topbar() + main + overlays();
+    var fbBtn = document.getElementById('fbclose');
+    if (fbBtn) fbBtn.focus();
+  }
+
+  /* ---------- actions ---------- */
+  var SAY = function (t, m) { fb(t, m); };
+  var HOME_MSG = {
+    dash: 'You’re already on the dashboard. Look for the part of the navigation that deals with client accounts.',
+    docs: 'Documents lists files across every account. It’s faster to find the client first.',
+    'new': 'New document is for creating certificates. You need to find one that already exists.',
+    notes: 'Account notes stores special instructions about an account. It won’t help you find a client.'
+  };
+
+  function docSearch() {
+    var v = s.docNum.replace(/\s/g, '');
+    if (!v) return SAY('Enter a search term', 'Look at John’s faded copy. Find a detail you can still read. Enter it in Certificate number.');
+    if (v === '00081-002' || v === '00081002') return set({ step: 'results', checked: false, printOpen: false });
+    if (v === '00081') return SAY('Too many matches', '00081 matches several certificates. Enter the full certificate number, including the part after the dash.');
+    SAY('No documents found', 'No certificate matches “' + s.docNum + '”. Check the certificate number in the top right corner of the faded copy.');
+  }
+  function runSearch() {
+    var q = s.query.trim().toLowerCase();
+    if (!q) return SAY('Enter a search term', s.searchBy === 'name' ? 'Type the company name from the email first.' : 'Type an account number, or switch to search by client name.');
+    set({ results: CLIENTS.filter(function (c) { return s.searchBy === 'name' ? c.name.toLowerCase().indexOf(q) >= 0 : c.id.indexOf(q) >= 0; }).map(function (c) { return c.id; }) });
+  }
+
+  var ACT = {
+    start: function () { set({ step: 'email' }); },
+    restart: function () { s = fresh(); render(); },
+    openAttachment: function () { set({ copy: 'faded', sawAttachment: true }); },
+    openSystem: function () {
+      if (!s.sawAttachment) SAY('Check the attachment first', 'Open John’s attachment so you know what he has. You’ll use it to find the clear copy.');
+      else set({ step: 'home', copy: null });
+    },
+    nav: function (key) {
+      if (s.step === 'home') { if (key === 'clients') set({ menu: !s.menu }); else SAY('Not this one', HOME_MSG[key]); return; }
+      if (s.step === 'search') { if (key !== 'clients') SAY('Finish your search', 'Use the search on the Clients page to find the company.'); return; }
+      if (s.step === 'account') return SAY('You’re in the right account', 'Use Find a document to search for the certificate.');
+      SAY('Not needed here', 'Select the certificate with its checkbox. Then click Download / Print.');
+    },
+    findClient: function () { set({ step: 'search', menu: false }); },
+    recentClients: function () { SAY('Try another option', 'Recently viewed only lists accounts you opened lately. John is a new contact, so search all clients.'); },
+    runSearch: runSearch,
+    showAll: function () { set({ results: null, query: '' }); },
+    pickClient: function (id) {
+      if (id === '1122667') return set({ step: 'account', menu: false });
+      var c = CLIENTS.filter(function (x) { return x.id === id; })[0];
+      if (c.name.indexOf('Big Business') === 0) SAY('Close, but not quite', 'That is a different Big Business account. The email is from Big Business ABC.');
+      else SAY('Not this client', 'That’s not quite right. Remember, the company in the email is Big Business ABC.');
+    },
+    resetDoc: function () { set({ docNum: '' }); },
+    docSearch: docSearch,
+    downloadPrint: function () {
+      if (s.step === 'cert') return;
+      if (!s.checked) SAY('Select the certificate first', 'Tick the checkbox next to the certificate. Then click Download / Print.');
+      else set({ printOpen: true });
+    },
+    otherAction: function () { if (s.step !== 'cert') SAY('Not needed here', 'Select the certificate with its checkbox. Then click Download / Print.'); },
+    cancelPrint: function () { set({ printOpen: false }); },
+    printDocs: function () { set({ step: 'cert', printOpen: false }); },
+    toQuiz: function () { set({ step: 'quiz' }); },
+    checkAnswers: function () {
+      if (QUIZ.some(function (q) { return !s.answers[q.key]; })) return SAY('Answer both questions', 'Pick an answer for each question before you check.');
+      set({ submitted: true });
+    },
+    finish: function () { set({ step: 'done' }); },
+    viewFaded: function () { set({ copy: 'faded' }); },
+    viewClear: function () { set({ copy: 'clear' }); },
+    closeCopy: function () { set({ copy: null }); },
+    closeFb: function () { set({ fb: null }); }
+  };
+
+  var stage = document.getElementById('stage');
+  stage.addEventListener('click', function (e) {
+    var el = e.target.closest('[data-act]');
+    if (el && ACT[el.dataset.act]) ACT[el.dataset.act](el.dataset.arg);
+  });
+  stage.addEventListener('input', function (e) {
+    if (e.target.id === 'q') s.query = e.target.value;
+    if (e.target.id === 'docnum') s.docNum = e.target.value;
+  });
+  stage.addEventListener('change', function (e) {
+    var t = e.target;
+    if (t.id === 'searchby') set({ searchBy: t.value });
+    else if (t.id === 'pick') s.checked = t.checked;
+    else if (t.type === 'radio') { var a = Object.assign({}, s.answers); a[t.name] = t.value; set({ answers: a, submitted: false }); }
+  });
+  stage.addEventListener('keydown', function (e) {
+    if (e.key !== 'Enter') return;
+    if (e.target.id === 'q') { e.preventDefault(); runSearch(); }
+    if (e.target.id === 'docnum') { e.preventDefault(); docSearch(); }
+  });
+
+  /* ---------- scale to fit the page or iframe width ---------- */
+  function fit() {
+    var scale = Math.min(1, window.innerWidth / 1280);
+    stage.style.transform = 'scale(' + scale + ')';
+    document.getElementById('fit').style.height = (800 * scale) + 'px';
+  }
+  window.addEventListener('resize', fit);
+  fit();
+  render();
+})();
+</script>
+</body>
+</html>
