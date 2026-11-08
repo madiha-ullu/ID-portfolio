@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&amp;family=Karla:wght@400;500;600&amp;display=swap">
+<script src="./image-slot.js"></script>
+<style>
+  body{margin:0}
+  a{color:#1F5C63}
+  a:hover{color:#2E7C82}
+</style>
+</helmet>
+<div style="font-family:'Karla',sans-serif;background:#F3EDE1;color:#163D46">
+
+  <header style="position:sticky;top:0;z-index:10;background:#F3EDE1;border-bottom:1px solid #D7CDBB;display:flex;align-items:center;justify-content:space-between;padding:20px 64px">
+    <img src="assets/logo/ullu-wordmark-cropped.png" style="height:48px;width:auto">
+    <nav style="display:flex;align-items:center;gap:36px;font-size:15px;font-weight:500">
+      <a href="#work" style="text-decoration:none;color:#163D46">Work Examples</a>
+      <a href="#about" style="text-decoration:none;color:#163D46">About</a>
+      <a href="#contact" style="display:inline-flex;align-items:center;padding:10px 22px;border-radius:999px;background:#163D46;color:#FAF7F0;text-decoration:none;font-weight:600">Contact Us</a>
+    </nav>
+  </header>
+
+  <section style="position:relative;overflow:hidden;background:#163D46;padding:120px 64px 100px;box-sizing:border-box">
+    <div style="position:absolute;inset:0;background:url('assets/textures/teal-gold-wash.png') center/cover;opacity:0.5;mix-blend-mode:screen"></div>
+    <div style="position:relative;max-width:760px;display:flex;flex-direction:column;gap:24px">
+      <div style="display:flex;align-items:center;gap:10px;font-size:14px;letter-spacing:0.14em;text-transform:uppercase;font-weight:600;color:#DCEAEA">
+        <span style="width:18px;height:2px;background:#D9AD5C"></span>Learning Strategy &amp; Design
+      </div>
+      <h1 style="font-family:'Poppins',sans-serif;font-weight:700;font-size:44px;line-height:1.15;margin:0;color:#FFFFFF;white-space:nowrap">Craft goal-driven training.<br><span style="color:#9CCBCD">Spark real-world impact.</span></h1>
+      <p style="font-size:19px;line-height:1.6;color:#DCEAEA;max-width:600px;margin:0">From environmental health to dementia care, we transform your developmental goals into customized, outcomes-based training that prepares your learners to make a meaningful difference.</p>
+      <div style="display:flex;gap:14px;margin-top:8px">
+        <a href="#work" style="padding:14px 30px;border-radius:999px;background:#D9AD5C;color:#163D46;text-decoration:none;font-weight:600;font-size:16px">Work Examples</a>
+        <a href="#contact" style="padding:14px 30px;border-radius:999px;background:transparent;border:2px solid #FFFFFF;color:#FFFFFF;text-decoration:none;font-weight:600;font-size:16px">Contact Us</a>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding:100px 64px;box-sizing:border-box;background:#F3EDE1">
+    <div style="display:flex;align-items:center;gap:10px;font-size:14px;letter-spacing:0.14em;text-transform:uppercase;font-weight:600;color:#5C7278;margin-bottom:14px">
+      <span style="width:18px;height:2px;background:#D9AD5C"></span>Services
+    </div>
+    <h2 style="font-family:'Poppins',sans-serif;font-size:38px;font-weight:700;margin:0 0 48px;color:#163D46">Align. Design. Deliver.</h2>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:28px">
+      <div style="background:#FFFFFF;border:1px solid #D7CDBB;border-radius:16px;box-shadow:0 1px 3px rgba(22,61,70,0.08);padding:36px;display:flex;flex-direction:column;gap:16px">
+        <img src="assets/icons/icon-filter-process.png" style="height:88px;width:88px;object-fit:contain;align-self:center">
+        <h3 style="font-family:'Poppins',sans-serif;font-size:22px;margin:0;color:#163D46">Goal Alignment</h3>
+        <p style="font-size:15px;line-height:1.6;color:#5C7278;margin:0">We assess your learners' capabilities against your developmental goals to identify and target knowledge gaps to improve capacity for real-world impact.</p>
+      </div>
+      <div style="background:#FFFFFF;border:1px solid #D7CDBB;border-radius:16px;box-shadow:0 1px 3px rgba(22,61,70,0.08);padding:36px;display:flex;flex-direction:column;gap:16px">
+        <img src="assets/icons/icon-idea-tools.png" style="height:88px;width:88px;object-fit:contain;align-self:center">
+        <h3 style="font-family:'Poppins',sans-serif;font-size:22px;margin:0;color:#163D46">Learning Design</h3>
+        <p style="font-size:15px;line-height:1.6;color:#5C7278;margin:0">Using the gaps identified, we design targeted learning solutions, including competency requirements, curricula, and professional development pathways.</p>
+      </div>
+      <div style="background:#FFFFFF;border:1px solid #D7CDBB;border-radius:16px;box-shadow:0 1px 3px rgba(22,61,70,0.08);padding:36px;display:flex;flex-direction:column;gap:16px">
+        <img src="assets/icons/icon-course-blueprint.png" style="height:88px;width:88px;object-fit:contain;align-self:center">
+        <h3 style="font-family:'Poppins',sans-serif;font-size:22px;margin:0;color:#163D46">Implementation</h3>
+        <p style="font-size:15px;line-height:1.6;color:#5C7278;margin:0">We partner with you to deliver engaging, outcomes-based training curated for your organization's needs, with performance indicators to measure impact.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="work" style="padding:100px 64px;box-sizing:border-box;background:#FFFFFF">
+    <div style="display:flex;align-items:center;gap:10px;font-size:14px;letter-spacing:0.14em;text-transform:uppercase;font-weight:600;color:#5C7278;margin-bottom:14px">
+      <span style="width:18px;height:2px;background:#D9AD5C"></span>Work Examples
+    </div>
+    <h2 style="font-family:'Poppins',sans-serif;font-size:38px;font-weight:700;margin:0 0 8px;color:#163D46">Courses and case studies</h2>
+    <p style="font-size:16px;color:#5C7278;margin:0 0 48px;max-width:600px">Select a project to see the full case study.</p>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:32px">
+      <sc-for list="{{ workExamples }}" as="w" hint-placeholder-count="8">
+        <div style="display:flex;flex-direction:column;gap:14px">
+          <sc-if value="{{ w.hasCase }}" hint-placeholder-val="{{ false }}">
+            <div onClick="{{ w.open }}" style="position:relative;width:100%;height:190px;border-radius:14px;overflow:hidden;cursor:pointer;background:#163D46">
+              <img src="{{ w.thumb }}" style="width:100%;height:100%;object-fit:cover;display:block">
+              <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(22,61,70,0) 40%,rgba(22,61,70,0.6) 100%)"></div>
+              <div style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:56px;height:56px;border-radius:999px;background:rgba(250,247,240,0.92);display:flex;align-items:center;justify-content:center">
+                <div style="width:0;height:0;border-left:18px solid #163D46;border-top:11px solid transparent;border-bottom:11px solid transparent;margin-left:5px"></div>
+              </div>
+              <div style="position:absolute;left:14px;bottom:12px;font-size:12px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:#FAF7F0">Watch walkthrough</div>
+            </div>
+          </sc-if>
+          <sc-if value="{{ w.hasPage }}" hint-placeholder-val="{{ false }}">
+            <a href="{{ w.page }}" style="position:relative;display:block;width:100%;height:190px;border-radius:14px;overflow:hidden;background:#163D46;text-decoration:none">
+              <sc-if value="{{ w.thumb }}" hint-placeholder-val="{{ true }}"><img src="{{ w.thumb }}" style="width:100%;height:100%;object-fit:cover;object-position:{{ w.thumbPos }};display:block"></sc-if>
+              <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(22,61,70,0) 35%,rgba(22,61,70,0.75) 100%)"></div>
+              <div style="position:absolute;left:14px;top:12px;padding:4px 10px;border-radius:999px;background:#FAF7F0;font-size:11px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:#163D46">{{ w.count }}</div>
+              <div style="position:absolute;left:14px;bottom:12px;display:flex;align-items:center;gap:8px;font-size:12px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:#FAF7F0">View case study <span style="color:#E7B24A">→</span></div>
+            </a>
+          </sc-if>
+          <sc-if value="{{ w.hasLink }}" hint-placeholder-val="{{ false }}">
+            <div style="position:relative;width:100%;height:190px">
+              <image-slot id="work-{{ w.id }}" style="width:100%;height:190px" shape="rounded" radius="14" placeholder="Drop a screenshot of the interactive"></image-slot>
+              <a href="{{ w.link }}" target="_blank" rel="noopener" style="position:absolute;left:12px;bottom:12px;display:flex;align-items:center;gap:8px;padding:8px 14px;border-radius:999px;background:#163D46;color:#FAF7F0;font-size:12px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;text-decoration:none">Try the interactive <span style="color:#E7B24A">↗</span></a>
+            </div>
+          </sc-if>
+          <sc-if value="{{ w.noCase }}" hint-placeholder-val="{{ true }}">
+            <image-slot id="work-{{ w.id }}" style="width:100%;height:190px" shape="rounded" radius="14" placeholder="{{ w.placeholder }}"></image-slot>
+          </sc-if>
+          <div style="display:flex;align-items:center;gap:8px">
+            <span style="padding:4px 12px;border-radius:999px;background:#E8DFCF;font-size:11px;font-weight:500;color:#163D46">{{ w.tag }}</span>
+          </div>
+          <h3 style="font-family:'Poppins',sans-serif;font-size:18px;font-weight:600;margin:0;color:#163D46">{{ w.title }}</h3>
+          <sc-if value="{{ w.client }}" hint-placeholder-val="{{ false }}">
+            <div style="font-size:13px;font-weight:600;color:#5C7278;margin-top:-8px">{{ w.client }}</div>
+          </sc-if>
+          <sc-if value="{{ w.summary }}" hint-placeholder-val="{{ false }}">
+            <p style="font-size:14px;line-height:1.6;color:#4A6168;margin:0;text-wrap:pretty">{{ w.summary }}</p>
+          </sc-if>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <sc-if value="{{ activeCase }}" hint-placeholder-val="{{ false }}">
+    <div onClick="{{ closeCase }}" style="position:fixed;inset:0;z-index:60;background:rgba(22,61,70,0.62);display:flex;align-items:flex-start;justify-content:center;padding:56px 24px;overflow-y:auto">
+      <div onClick="{{ stop }}" style="position:relative;width:100%;max-width:880px;background:#FAF7F0;border-radius:20px;overflow:hidden;box-shadow:0 24px 60px rgba(22,61,70,0.35)">
+        <button onClick="{{ closeCase }}" style="position:absolute;top:16px;right:16px;z-index:2;width:38px;height:38px;border-radius:999px;border:none;background:rgba(22,61,70,0.75);color:#FAF7F0;font-size:18px;cursor:pointer;line-height:1">×</button>
+        <div style="position:relative;width:100%;aspect-ratio:16/9;background:#000">
+          <iframe src="{{ activeCase.embed }}" title="{{ activeCase.title }}" allow="accelerometer; autoplay; clipboard-write; encrypted-media; picture-in-picture" allowfullscreen="true" style="position:absolute;inset:0;width:100%;height:100%;border:0"></iframe>
+        </div>
+        <div style="padding:40px 48px 48px;display:flex;flex-direction:column;gap:26px">
+          <div style="display:flex;flex-direction:column;gap:10px">
+            <span style="align-self:flex-start;padding:4px 12px;border-radius:999px;background:#E8DFCF;font-size:11px;font-weight:500;color:#163D46">{{ activeCase.tag }}</span>
+            <h3 style="font-family:'Poppins',sans-serif;font-size:30px;font-weight:700;margin:0;color:#163D46">{{ activeCase.title }}</h3>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:24px">
+            <div style="display:grid;grid-template-columns:120px 1fr;gap:24px;align-items:start">
+              <div style="font-size:13px;letter-spacing:0.14em;text-transform:uppercase;font-weight:600;color:#5C7278;padding-top:3px">Need</div>
+              <p style="font-size:16px;line-height:1.65;color:#163D46;margin:0;text-wrap:pretty">{{ activeCase.need }}</p>
+            </div>
+            <div style="height:1px;background:#D7CDBB"></div>
+            <div style="display:grid;grid-template-columns:120px 1fr;gap:24px;align-items:start">
+              <div style="font-size:13px;letter-spacing:0.14em;text-transform:uppercase;font-weight:600;color:#5C7278;padding-top:3px">Approach</div>
+              <p style="font-size:16px;line-height:1.65;color:#163D46;margin:0;text-wrap:pretty">{{ activeCase.approach }}</p>
+            </div>
+            <div style="height:1px;background:#D7CDBB"></div>
+            <div style="display:grid;grid-template-columns:120px 1fr;gap:24px;align-items:start">
+              <div style="font-size:13px;letter-spacing:0.14em;text-transform:uppercase;font-weight:600;color:#5C7278;padding-top:3px">Outcome</div>
+              <p style="font-size:16px;line-height:1.65;color:#163D46;margin:0;text-wrap:pretty">{{ activeCase.outcome }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </sc-if>
+
+  <section id="presentations" data-screen-label="Presentations and publications" style="padding:100px 64px;box-sizing:border-box;background:#F3EDE1">
+    <div style="display:flex;flex-direction:column;gap:48px">
+      <div style="display:flex;flex-direction:column;gap:14px">
+        <div style="display:flex;align-items:center;gap:10px;font-size:14px;letter-spacing:0.14em;text-transform:uppercase;font-weight:600;color:#5C7278">
+          <span style="width:18px;height:2px;background:#D9AD5C"></span>Presentations &amp; Publications
+        </div>
+        <h2 style="font-family:'Poppins',sans-serif;font-size:38px;font-weight:700;margin:0;color:#163D46">Contributions to the field</h2>
+      </div>
+      <div style="display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:56px;align-items:center;padding-bottom:48px;border-bottom:1px solid #D7CDBB">
+        <img src="assets/work/acrp-2027-accepted.png" alt="ACRP 2027 proposal accepted, April 30 to May 3, San Diego" style="display:block;width:100%;max-width:340px;justify-self:center;height:auto;border-radius:10px;box-shadow:0 10px 28px rgba(22,61,70,0.18)">
+        <div style="display:flex;flex-direction:column;gap:16px">
+          <span style="align-self:flex-start;padding:5px 14px;border-radius:999px;background:#DCEAEA;font-size:12px;font-weight:600;color:#163D46">Presentation · 2027</span>
+          <div style="font-size:14px;letter-spacing:0.14em;text-transform:uppercase;font-weight:600;color:#5C7278">ACRP 2027 (co-presenter)</div>
+          <h3 style="font-family:'Poppins',sans-serif;font-size:28px;font-weight:700;line-height:1.25;margin:0;color:#163D46;text-wrap:balance">Beyond Onboarding: Innovating Continuous Learning for Clinical Research Teams</h3>
+        </div>
+      </div>
+      <div style="display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:56px;align-items:center;padding-bottom:48px;border-bottom:1px solid #D7CDBB">
+        <div style="display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:16px;align-items:end">
+          <a href="assets/work/atd-sse-2026-cover.png" target="_blank" rel="noopener" style="display:block;border-radius:10px;overflow:hidden;box-shadow:0 10px 28px rgba(22,61,70,0.18)"><img src="assets/work/atd-sse-2026-cover.png" alt="ATD Super Southeast Conference 2026 program cover" style="display:block;width:100%;height:auto"></a>
+          <a href="assets/work/atd-sse-2026-article.png" target="_blank" rel="noopener" style="display:block;border-radius:10px;overflow:hidden;border:1px solid #D7CDBB;box-shadow:0 10px 28px rgba(22,61,70,0.12)"><img src="assets/work/atd-sse-2026-article.png" alt="Article: The Balancing Act of Training Through Organizational Change" style="display:block;width:100%;height:auto"></a>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:16px">
+          <span style="align-self:flex-start;padding:5px 14px;border-radius:999px;background:#DCEAEA;font-size:12px;font-weight:600;color:#163D46">Article · October 2026</span>
+          <div style="font-size:14px;letter-spacing:0.14em;text-transform:uppercase;font-weight:600;color:#5C7278">ATD Super Southeast Conference</div>
+          <h3 style="font-family:'Poppins',sans-serif;font-size:28px;font-weight:700;line-height:1.25;margin:0;color:#163D46;text-wrap:balance">The Balancing Act of Training Through Organizational Change</h3>
+          <a href="assets/work/atd-sse-2026-article.png" target="_blank" rel="noopener" style="align-self:flex-start;margin-top:8px;padding:12px 26px;border-radius:999px;background:#163D46;color:#FAF7F0;text-decoration:none;font-weight:600;font-size:15px">Read the article →</a>
+        </div>
+      </div>
+      <div style="display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:56px;align-items:center">
+        <a href="assets/work/apha-2024-poster-only.jpg" target="_blank" rel="noopener" style="display:block;border-radius:10px;overflow:hidden;box-shadow:0 10px 28px rgba(22,61,70,0.18)"><img src="assets/work/apha-2024-poster-only.jpg" alt="APHA 2024 poster: A Public Health Approach to Dementia" style="display:block;width:100%;height:auto"></a>
+        <div style="display:flex;flex-direction:column;gap:16px">
+          <span style="align-self:flex-start;padding:5px 14px;border-radius:999px;background:#DCEAEA;font-size:12px;font-weight:600;color:#163D46">Poster · October 2024</span>
+          <div style="font-size:14px;letter-spacing:0.14em;text-transform:uppercase;font-weight:600;color:#5C7278">APHA Annual Meeting</div>
+          <h3 style="font-family:'Poppins',sans-serif;font-size:28px;font-weight:700;line-height:1.25;margin:0;color:#163D46;text-wrap:balance">Partnering to Build Dementia Training for the Current and Future Public Health Workforce</h3>
+          <p style="font-size:16px;line-height:1.65;color:#163D46;margin:0;text-wrap:pretty">Presented on behalf of the Alzheimer’s Association.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding:100px 64px;box-sizing:border-box;background:#163D46;position:relative;overflow:hidden">
+    <div style="position:absolute;inset:0;background:url('assets/textures/teal-gold-wash.png') center/cover;opacity:0.25;mix-blend-mode:screen"></div>
+    <div style="position:relative;display:flex;align-items:center;gap:10px;font-size:14px;letter-spacing:0.14em;text-transform:uppercase;font-weight:600;color:#9CCBCD;margin-bottom:14px">
+      <span style="width:18px;height:2px;background:#D9AD5C"></span>Client Feedback
+    </div>
+    <h2 style="position:relative;font-family:'Poppins',sans-serif;font-size:38px;font-weight:700;margin:0 0 48px;color:#FFFFFF">What partners say</h2>
+    <div style="position:relative;display:grid;grid-template-columns:repeat(3,1fr);gap:28px">
+      <sc-for list="{{ testimonials }}" as="t" hint-placeholder-count="3">
+        <div style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.18);border-radius:16px;padding:32px;display:flex;flex-direction:column;gap:18px">
+          <p style="font-size:15px;line-height:1.65;color:#DCEAEA;margin:0">{{ t.quote }}</p>
+          <div>
+            <div style="font-weight:600;font-size:14px;color:#FFFFFF">{{ t.name }}</div>
+            <div style="font-size:13px;color:#9CCBCD">{{ t.role }}</div>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <section id="about" style="padding:100px 64px;box-sizing:border-box;background:#F3EDE1">
+    <div style="display:grid;grid-template-columns:260px 1fr;gap:56px;align-items:center;max-width:1100px;margin:0 auto">
+      <image-slot id="about-headshot" style="width:260px;height:260px" shape="circle" placeholder="Drop headshot"></image-slot>
+      <div style="display:flex;flex-direction:column;gap:16px">
+        <div style="display:flex;align-items:center;gap:10px;font-size:14px;letter-spacing:0.14em;text-transform:uppercase;font-weight:600;color:#5C7278">
+          <span style="width:18px;height:2px;background:#D9AD5C"></span>About Me
+        </div>
+        <p style="font-size:16px;line-height:1.65;color:#163D46;margin:0">As the Research Program Director at one of the largest hospital systems in Georgia, I built a highly effective clinical research program by developing a team of over 80 professionals. That's what got me hooked on performance improvement through learning design.</p>
+        <p style="font-size:16px;line-height:1.65;color:#163D46;margin:0">Since then I've created educational programs for academic institutions like Emory University's School of Nursing and School of Public Health, the University of Virginia, non-profits like the Alzheimer's Association, and a global commercial insurance company.</p>
+        <div style="margin-top:8px">
+          <div style="font-family:'Poppins',sans-serif;font-weight:600;font-size:17px;color:#163D46">Madiha Shakir, MBA</div>
+          <div style="font-size:14px;color:#5C7278">Learning Strategy and Design</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" style="padding:100px 64px;box-sizing:border-box;background:#FFFFFF">
+    <div style="max-width:560px;margin:0 auto;display:flex;flex-direction:column;gap:20px">
+      <div style="display:flex;align-items:center;gap:10px;font-size:14px;letter-spacing:0.14em;text-transform:uppercase;font-weight:600;color:#5C7278">
+        <span style="width:18px;height:2px;background:#D9AD5C"></span>Get in touch
+      </div>
+      <h2 style="font-family:'Poppins',sans-serif;font-size:34px;font-weight:700;margin:0;color:#163D46">Contact me</h2>
+      <input placeholder="Name" style="padding:14px 16px;border-radius:10px;border:1px solid #D7CDBB;background:#F3EDE1;font-size:15px;font-family:'Karla',sans-serif;color:#163D46">
+      <input placeholder="Email" style="padding:14px 16px;border-radius:10px;border:1px solid #D7CDBB;background:#F3EDE1;font-size:15px;font-family:'Karla',sans-serif;color:#163D46">
+      <textarea placeholder="Message" rows="4" style="padding:14px 16px;border-radius:10px;border:1px solid #D7CDBB;background:#F3EDE1;font-size:15px;font-family:'Karla',sans-serif;color:#163D46;resize:vertical"></textarea>
+      <button style="align-self:flex-start;padding:14px 32px;border-radius:999px;background:#163D46;color:#FAF7F0;border:none;font-weight:600;font-size:16px;cursor:pointer">Send</button>
+    </div>
+  </section>
+
+  <footer style="padding:40px 64px;box-sizing:border-box;background:#163D46;display:flex;align-items:center;justify-content:space-between">
+    <img src="assets/logo/ullu-wordmark-cropped.png" style="height:48px;width:auto;filter:brightness(0) invert(1)">
+    <div style="font-size:13px;color:#9CCBCD">© 2026 Ullu Learning Design</div>
+  </footer>
+
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+const CASES = {};
+
+class Component extends DCLogic {
+  state = { openCase: null };
+  renderVals() {
+    const open = (id) => () => this.setState({ openCase: id });
+    const withCase = (w) => {
+      const c = CASES[w.id];
+      return Object.assign({}, w, {
+        hasCase: !!c && !w.page,
+        hasPage: !!w.page,
+        hasLink: !c && !w.page && !!w.link,
+        noCase: !c && !w.page && !w.link,
+        thumbPos: w.thumbPos || 'center',
+        thumb: w.thumb || (c ? `https://img.youtube.com/vi/${c.videoId}/maxresdefault.jpg` : ''),
+        open: c ? open(w.id) : null,
+      });
+    };
+    const active = CASES[this.state.openCase];
+    return {
+      activeCase: active ? Object.assign({}, active, {
+        embed: `https://www.youtube.com/embed/${active.videoId}?rel=0&autoplay=1`,
+      }) : null,
+      closeCase: () => this.setState({ openCase: null }),
+      stop: (e) => e.stopPropagation(),
+      workExamples: [
+        { id: 10, title: 'Shared Services Onboarding', tag: 'Corporate Onboarding', client: 'Global insurance firm', count: 'Onboarding + refresher curricula', page: 'Case Study - Shared Services Onboarding.dc.html', thumb: 'assets/work/shared-services-thumb.jpg', thumbPos: '50% 15%', summary: 'A global insurance firm moved to a shared services model. Over two years, built onboarding for three new roles and refresher training for two departments. One refresher reached about 600 employees globally with 92% completion.' },
+        { id: 11, title: 'Public Health and Dementia Series', tag: 'Dementia & Public Health', client: 'Alzheimer’s Association', count: '3-module series', page: 'Case Study - Public Health and Dementia Series.dc.html', thumb: 'assets/work/video-thumb-yzA5XNKLwFI.webp', summary: 'The Alzheimer’s Association needed public health training on dementia for practitioners and students. Designed and built a three-module series in Rise and Storyline, including a custom learner journal. Over 90% of learners reported increased knowledge, and the work led to a new module in the series.' },
+        { id: 6, title: 'Emergency Response Training', tag: 'Emergency Preparedness', client: 'Public health institution', count: '20+ course curriculum', page: 'Case Study - Emergency Response Training.dc.html', thumb: 'assets/work/emergency-response-thumb.jpg', thumbPos: '50% 50%', summary: 'The pandemic exposed gaps in emergency readiness, and healthcare professionals needed training fast. Led a team of developers to build more than 20 courses in three months, including a hands-on SALT triage simulation. Courses averaged a 4.6 out of 5 rating.' },
+        { id: 8, title: 'Caregiver as a Navigator', tag: 'Dementia Care', client: 'Emory University, Roybal Center', count: '30-lesson course', page: 'Case Study - Caregiver as a Navigator.dc.html', thumb: 'assets/work/caregiver-thumb.jpg', thumbPos: '50% 25%', summary: 'Family caregivers of people with dementia must navigate complex systems on their own. Led the learning strategy and a team building a 30-lesson microlearning course in Rise and Storyline. It is now being evaluated in an NIH-funded randomized study of 270 caregivers.' },
+        { id: 2, title: 'Health Effects of Climate Change on Children', tag: 'Environmental Health', client: 'Southeast PEHSU', count: 'CME eLearning course', page: 'Case Study - Climate Change and Child Health.dc.html', thumb: 'assets/work/climate-stripes.png', thumbPos: '50% 50%', summary: 'Pediatricians needed guidance on talking with families about climate risks to children’s health. Partnered with four pediatricians to build a Rise and Storyline CME course built around five questions and a motivational interviewing framework. The AAP approved it for CME credit, and it launched in June 2023.' },
+        { id: 7, title: 'Vaccine Confidence for Nursing Education', tag: 'Nursing Education', client: 'Emory University, School of Nursing', count: 'Faculty development course', page: 'Case Study - Vaccine Confidence for Nursing Education.dc.html', thumb: 'assets/work/vaccine-thumb.jpg', thumbPos: '50% 50%', summary: 'Nursing faculty needed to coach students through emotionally charged vaccine conversations, in person and on social media. Designed a Rise and Storyline course with Vyond scenarios built on motivational interviewing. Since launch, it has been adopted by three academic and clinical programs.' },
+        { id: 5, title: 'Facilitation Skills for Lifestyle Coaches', tag: 'Diabetes Prevention', client: 'Emory University, DTTAC', count: 'Interactive course', page: 'Case Study - Facilitation Skills for Lifestyle Coaches.dc.html', thumb: 'assets/work/facilitation-thumb.jpg', thumbPos: '50% 30%', summary: 'New lifestyle coaches needed a fast, engaging foundation in facilitation. Designed an interactive Storyline course built around a “guide for the journey” metaphor and nine facilitation techniques. Launched in 2023, it is still in use and has expanded to additional programs.' },
+      ].map(withCase),
+      testimonials: [
+        { quote: "Madiha is a pleasure to work with — consistently professional and adept at leading the team forward. Her listening skills were evident every step of the way; the end product exceeded all our expectations.", name: 'Karina Maher, MD', role: 'Pediatrician' },
+        { quote: "Madiha brings a depth of knowledge and creativity when designing interactive and visual elements. She's pushed us to more effectively engage learners, taking our products to the next level.", name: 'Eva Jackson, MPH, CHES', role: "Associate Director, Healthy Brain Initiative | Alzheimer's Association" },
+        { quote: 'Madiha strategically guided our team in creating a culturally tailored course for Black dementia caregivers, always prioritizing the needs of the learners throughout the process.', name: 'Fayron Epps, PhD, RN, FGSA, FAAN', role: 'Adjunct Associate Professor, Nell Hodgson Woodruff School of Nursing | Emory University' },
+      ],
+    };
+  }
+}
+
+</script>
+</body>
+</html>
