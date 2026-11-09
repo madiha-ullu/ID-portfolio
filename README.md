@@ -1,23 +1,29 @@
-# Ullu Learning Design — Website (design files)
+# Ullu Learning Design — Website
 
-Backup of the Ullu Learning Design website mockup and case study pages, exported from Claude Design.
+The Ullu Learning Design portfolio website: a homepage and seven case studies, as standard static HTML. No build step and no framework.
 
 ## Pages
 
-- `Ullu Website Mockup.dc.html` — homepage
-- `Case Study - Shared Services Onboarding.dc.html`
-- `Case Study - Public Health and Dementia Series.dc.html`
-- `Case Study - Emergency Response Training.dc.html`
-- `Case Study - Caregiver as a Navigator.dc.html`
-- `Case Study - Climate Change and Child Health.dc.html`
-- `Case Study - Vaccine Confidence for Nursing Education.dc.html`
-- `Case Study - Facilitation Skills for Lifestyle Coaches.dc.html`
+- `index.html` — homepage
+- `shared-services-onboarding.html`
+- `public-health-and-dementia-series.html`
+- `emergency-response-training.html`
+- `caregiver-as-a-navigator.html`
+- `climate-change-and-child-health.html`
+- `vaccine-confidence-for-nursing-education.html`
+- `facilitation-skills-for-lifestyle-coaches.html`
 
-## Supporting files
+## Assets
 
-- `assets/` — logo, textures, icons, work-sample images, video thumbnails, and embedded interactives
-- `support.js`, `image-slot.js`, `.image-slots.state.json` — runtime used by the `.dc.html` design format
+- `assets/logo/` — Ullu wordmark
+- `assets/icons/` — the three service icons
+- `assets/textures/` — teal and gold wash used behind dark sections
+- `assets/work/` — case study thumbnails, work samples, video cover images and headshot
+- `assets/interactives/` — self-contained interactive exercises embedded on case study pages
 
-## Note for developers
+## Notes for developers
 
-The `.dc.html` pages use Claude Design's component format. Treat them as the design reference. Convert them to standard HTML (or your site platform) before publishing as a live site.
+- Fonts are Poppins (headings) and Karla (body) from Google Fonts.
+- Styles are inline on each element, as exported from the design. Brand colors and type rules live in the Ullu design system.
+- Video previews load the YouTube player only when the visitor clicks the cover (small script at the end of the page).
+- The contact form is markup only. Connect it to a form service or backend before launch.
