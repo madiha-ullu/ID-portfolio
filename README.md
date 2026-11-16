@@ -26,4 +26,4 @@ The Ullu Learning Design portfolio website: a homepage and seven case studies, a
 - Fonts are Poppins (headings) and Karla (body) from Google Fonts.
 - Styles are inline on each element, as exported from the design. Brand colors and type rules live in the Ullu design system.
 - Video previews load the YouTube player only when the visitor clicks the cover (small script at the end of the page).
-- The contact form is markup only. Connect it to a form service or backend before launch.
+- The contact form sends to Formspree (form ID `moeegadn`). Messages arrive in the Formspree account owner's email and dashboard. A short script shows the thank-you message on the page; without JavaScript the form still posts to Formspree.
